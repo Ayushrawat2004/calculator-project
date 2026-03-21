@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
+
         stage('Clone Repository') {
             steps {
-                echo 'Cloning repository...'
+                echo 'Cloning code...'
             }
         }
 
@@ -16,23 +17,25 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'python -m unittest discover'
+                bat """
+                C:\\Users\\Ayush\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m unittest discover
+                """
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
+                echo 'Deploying project...'
             }
         }
     }
 
     post {
         success {
-            echo 'Build Successful!'
+            echo 'Pipeline executed successfully!'
         }
         failure {
-            echo 'Build Failed!'
+            echo 'Pipeline failed!'
         }
     }
 }
