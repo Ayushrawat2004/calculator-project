@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                echo 'Cloning code...'
+                echo 'Cloning repository...'
             }
         }
 
@@ -17,15 +17,17 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat """
-                C:\\Users\\Ayush\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m unittest discover
-                """
+                // For Windows
+                bat 'python -m unittest discover'
+                
+                // For Linux/Mac (use this instead if needed)
+                // sh 'python3 -m unittest discover'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying project...'
+                echo 'Deploying application...'
             }
         }
     }
